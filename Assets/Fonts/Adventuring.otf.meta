@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: f58386d7546b45b4faa60f00c40b028d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Adventuring
+  fontNames:
+  - Adventuring
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0117c74e72e282f4eb5fad372d41bcfc, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
