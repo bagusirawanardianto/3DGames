@@ -7,6 +7,7 @@ public class PindahScene : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool isEscapeToExit;
+
     void Start()
     {
 
@@ -14,17 +15,7 @@ public class PindahScene : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            if (isEscapeToExit)
-            {
-                Application.Quit();
-            }
-            else
-            {
-                KembaliKeMenu();
-            }
-        }
+        
     }
 
     public void MulaiPermainan()
