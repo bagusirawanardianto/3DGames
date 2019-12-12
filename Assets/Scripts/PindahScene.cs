@@ -28,4 +28,9 @@ public class PindahScene : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
+
+    public void Setting()
+    {
+        SceneManager.LoadScene("GameControll");
+    }
 }

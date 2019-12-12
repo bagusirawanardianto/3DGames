@@ -61,6 +61,7 @@ public class WeaponController : MonoBehaviour
             if (health <= 0)
             {
                 Debug.Log("Player Mati");
+                Cursor.lockState = CursorLockMode.None;
                 SceneManager.LoadScene("GameOver");
                 AIEnemyController.GiveDamage = false;
                 Restart();

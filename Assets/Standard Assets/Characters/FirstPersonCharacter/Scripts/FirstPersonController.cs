@@ -42,6 +42,34 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        public GameObject panel;
+
+        //Create Keycodes that will be associated with each of our commands.
+        //These can be accessed by any other script in our game
+        public KeyCode jump { get; set; }
+        public KeyCode forward { get; set; }
+        public KeyCode backward { get; set; }
+        public KeyCode left { get; set; }
+        public KeyCode right { get; set; }
+        public KeyCode shot { get; set; }
+
+        void Awake()
+        {
+            /*Assign each keycode when the game starts.
+             * Loads data from PlayerPrefs so if a user quits the game, 
+             * their bindings are loaded next time. Default values
+             * are assigned to each Keycode via the second parameter
+             * of the GetString() function
+             */
+            jump = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("jumpKey", "Space"));
+            forward = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("forwardKey", "W"));
+            backward = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("backwardKey", "S"));
+            left = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("leftKey", "A"));
+            right = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("rightKey", "D"));
+            shot = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("shotKey", "M"));
+
+        }
+
         // Use this for initialization
         private void Start()
         {
@@ -65,7 +93,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
             {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                m_Jump = Input.GetKeyDown(jump);
             }
 
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
@@ -131,6 +159,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
             UpdateCameraPosition(speed);
 
             m_MouseLook.UpdateCursorLock();
+
+            if (panel.activeInHierarchy == false)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else if(panel.activeInHierarchy == true)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+
         }
 
 
@@ -212,7 +250,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 #if !MOBILE_INPUT
             // On standalone builds, walk/run speed is modified by a key press.
             // keep track of whether or not the character is walking or running
-            m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
+
+            //Control Run
+            m_IsWalking = !Input.GetKey(shot);
 #endif
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;

@@ -10,19 +10,19 @@ public class ChangeCamera : MonoBehaviour
  
    // Update is called once per frame
    void Update() {
-       if (Input.GetButtonDown ("Camera")) {
+       if (Input.GetButtonDown("Camera")) {
             if (CameraMode == 1) {
                 CameraMode = 0;
             }
             else {
                 CameraMode += 1;
             }
-            StartCoroutine (SwitchCamera());
+            StartCoroutine(SwitchCamera());
         }
    }
  
    IEnumerator SwitchCamera () {
-        yield return new WaitForSeconds (0.01f);
+        yield return new WaitForSeconds(0.01f);
         if (CameraMode == 0) {
             FPS.SetActive(true);
             TPS.SetActive(false);
